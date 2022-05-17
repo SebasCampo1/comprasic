@@ -18,17 +18,21 @@ app.config["SECRET_KEY"] = "yoursecretkey"
 app.config["SQLALCHEMY_DATABASE_URI"]= f"mysql + mysqldb://root:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}?unix_socket =/cloudsql/{PROJECT_ID}:{INSTANCE_NAME}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]= True
 
-db = SQLAlchemy
+db = SQLAlchemy(app)
 
-# User ORM for SQLAlchemy
-@app.route("/add", methods =['POST'])
-def add():
-    # getting name and email
-    return "Hello World!"
+@app.route('/')
+def testdb():
+    try:
+        db.session.query(text('1')).from_statement(text('SELECT 1')).all()
+        return '<h1>It works.</h1>'
+    except Exception as e:
+        # e holds description of the error
+        error_text = "<p>The error:<br>" + str(e) + "</p>"
+        hed = '<h1>Something is broken.</h1>'
+        return hed + error_text
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=config.PORT, debug=config.DEBUG_MODE)
-
 
 def obtener_conexion():
     return pymysql.connect(host='')
