@@ -20,7 +20,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]= True
 
 db = SQLAlchemy(app)
 
-<<<<<<< HEAD
+# User ORM for SQLAlchemy
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key = True, nullable = False)
     name = db.Column(db.String(50), nullable = False)
@@ -31,18 +31,6 @@ def add():
     # getting name and email
     name = request.form.get('name')
     email = request.form.get('email')
-=======
-@app.route('/')
-def testdb():
-    try:
-        db.session.query(text('1')).from_statement(text('SELECT 1')).all()
-        return '<h1>It works.</h1>'
-    except Exception as e:
-        # e holds description of the error
-        error_text = "<p>The error:<br>" + str(e) + "</p>"
-        hed = '<h1>Something is broken.</h1>'
-        return hed + error_text
->>>>>>> fe63879e60fe92ba3f8bb43c21235671ec856d85
 
     # checking if user already exists
     user = Users.query.filter_by(email = email).first()
@@ -99,9 +87,6 @@ def view():
         'message': response
     }, 200)
 
-    
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=config.PORT, debug=config.DEBUG_MODE)
-
-def obtener_conexion():
-    return pymysql.connect(host='')
