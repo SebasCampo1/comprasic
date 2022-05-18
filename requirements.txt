@@ -1,5 +1,11 @@
+<<<<<<< HEAD
+Flask==1.0.2
+mysqlclient==1.4.3
+Click==7.0
+=======
 Click==7.0
 Flask==1.0.2
+>>>>>>> fefce9c3762da2ee6fbdace7608ac737c878cbc2
 gunicorn==19.9.0
 itsdangerous==1.1.0
 Jinja2==2.10

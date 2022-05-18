@@ -1,5 +1,6 @@
 from flask import Flask,render_template, request
 from flask_mysqldb import MySQL
+import config
 
 app = Flask(__name__)
 app.config['MYSQL_HOST']='34.138.45.235'
@@ -14,6 +15,6 @@ def categorias():
     cur.execute('''SELECT * FROM categoria''')
     rv = cur.fetchall()
     return str(rv)
-
+    
 if __name__ == '__main__':
     app.run(debug=True, host='localhost', port=5000)
