@@ -1,6 +1,5 @@
 from flask import Flask,render_template, request
 from flask_mysqldb import MySQL
-
 import config
 
 app = Flask(__name__)
@@ -10,7 +9,6 @@ app.config['MYSQL_PASSWORD']='1mp0c4l1C5'
 app.config['MYSQL_DB']='comprasic-test'
 mysql = MySQL(app)
 
->>>>>>> fefce9c3762da2ee6fbdace7608ac737c878cbc2
 @app.route('/')
 def categorias():
     cur = mysql.connection.cursor()
@@ -22,7 +20,4 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=config.PORT, debug=config.DEBUG_MODE)
 
 if __name__ == "__main__":
-
     app.run()
->>>>>>> 6dc58358e88f4414fa2cce2a788c01fd4da08913
->>>>>>> fefce9c3762da2ee6fbdace7608ac737c878cbc2
